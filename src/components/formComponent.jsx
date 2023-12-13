@@ -1,6 +1,39 @@
+import React from "react";
 
+export default function FormComponent({pacientes,SetPacientes}){
+    let [Mascota,setMascota] = React.useState("Hook"); 
+    let [Nombre,setNombre] = React.useState("Hook"); 
+    let [Email,setEmail] = React.useState(""); 
+    let [Alta, SetAlta] = React.useState(""); 
+    let [Sintomas, SetSintomas] = React.useState(""); 
 
-export default function FormComponent(){
+    let [error, SetError] = React.useState(false);
+
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        if([Mascota,Nombre,Email,Alta,Sintomas].includes('')){
+            SetError(true);
+        }else{
+            console.log(Mascota,Nombre,Email,Alta,Sintomas);
+            SetError(false);
+        }   
+
+        handleAddPaciente();             
+        console.log(pacientes);
+    }
+    
+    const handleAddPaciente = ()=>{
+        let pacienteAux = {
+            Mascota,
+            Nombre,
+            Email,
+            Alta,
+            Sintomas,
+        }
+        const aux = [... pacientes, pacienteAux];
+        SetPacientes(aux);
+    }
+
     return(
         <>
             <div className="md:w-1/2 lg:w-2/5">
@@ -9,9 +42,17 @@ export default function FormComponent(){
                     Añade Pacientes y {" "}
                     <span className="text-indigo-600 font-bold">Administrar usuario</span>
                 </p>
-
-                <form action="" className="bg-white shadow-sm rounded-lg py-10 px-5">
+                
+                <form onSubmit={handleSubmit} className="bg-white shadow-sm rounded-lg py-10 px-5">
+                
                     <div className="text-left mb-5">
+                        {
+                        error&&(
+                            <div className="mb-3 bg-red-900 p-2 text-center">
+                                <span className="text-white font-bold text-center">Hay Un campo sin completar</span>
+                            </div>
+                        )
+                        }
                         <label 
                             htmlFor="input_mascota"
                             className="block text-gray-700 uppercase font-bold">
@@ -21,6 +62,8 @@ export default function FormComponent(){
                             type="text" 
                             name="input_mascota" 
                             placeholder="Nombre de Mascota"
+                            value={Mascota}
+                            onChange={(e)=> setMascota(e.target.value)} 
                             className="border-2 w-full p-2 mt-2 placeholder-gray-700 rounded-md"
                             id="input_mascota" />
                     </div>
@@ -35,6 +78,8 @@ export default function FormComponent(){
                             type="text" 
                             name="input_propietario" 
                             placeholder="Nombre de Propietario"
+                            value={Nombre}
+                            onChange={(e)=>setNombre(e.target.value)} 
                             className="border-2 w-full p-2 mt-2 placeholder-gray-700 rounded-md"
                             id="input_propietario" />
                     </div>
@@ -49,6 +94,8 @@ export default function FormComponent(){
                             type="email" 
                             name="input_email" 
                             placeholder="Email de propietario"
+                            value={Email}
+                            onChange={(e) => setEmail(e.target.value)}
                             className="border-2 w-full p-2 mt-2 placeholder-gray-700 rounded-md"
                             id="input_email" />
                     </div>
@@ -62,6 +109,7 @@ export default function FormComponent(){
                         <input 
                             type="date" 
                             name="input_alta" 
+                            onChange={(e)=>SetAlta(e.target.value) }
                             placeholder="Email de propietario"
                             className="border-2 w-full p-2 mt-2 placeholder-gray-700 rounded-md"
                             id="input_alta" />
@@ -76,16 +124,19 @@ export default function FormComponent(){
                         <textarea 
                             type="date" 
                             name="input_Sintomas" 
+                            value={Sintomas}
+                            onChange={(e)=> SetSintomas(e.target.value)}
                             className="border-2 w-full p-2 mt-2 placeholder-gray-700 rounded-md"
                             id="input_Sintomas" />
                     </div>
 
                     <input
-                            className="bg-indigo-800 w-full p-3 text-white uppercase font-bold hover:bg-indigo-500 cursor-pointer"
+                            // onClick={handleSubmit}
+                            className="bg-indigo-800 w-full p-3 text-white uppercase font-bold hover:bg-indigo-500 cursor-pointer active:transition-transform"
                             type="submit"
                             value="Agregar Paciente"
                     />
-
+ 
                 </form>
             </div>
         </>
