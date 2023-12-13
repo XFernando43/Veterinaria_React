@@ -1,4 +1,5 @@
 import React from "react";
+import ErrorComponent from "./errorComponent";
 
 export default function FormComponent({pacientes,SetPacientes}){
     let [Mascota,setMascota] = React.useState("Hook"); 
@@ -16,9 +17,8 @@ export default function FormComponent({pacientes,SetPacientes}){
         }else{
             console.log(Mascota,Nombre,Email,Alta,Sintomas);
             SetError(false);
+            handleAddPaciente();             
         }   
-
-        handleAddPaciente();             
         console.log(pacientes);
     }
     
@@ -48,9 +48,7 @@ export default function FormComponent({pacientes,SetPacientes}){
                     <div className="text-left mb-5">
                         {
                         error&&(
-                            <div className="mb-3 bg-red-900 p-2 text-center">
-                                <span className="text-white font-bold text-center">Hay Un campo sin completar</span>
-                            </div>
+                            <ErrorComponent message={"Hay campos sin completar"}/>
                         )
                         }
                         <label 

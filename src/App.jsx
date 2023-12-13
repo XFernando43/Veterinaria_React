@@ -15,8 +15,10 @@ function App() {
         <FormComponent 
             pacientes = {pacientes}
             SetPacientes = {SetPacientes}  
-          />
-        <ListadoPacientesComponents/>
+            />
+        <ListadoPacientesComponents
+          pacientes = {pacientes}
+        />
       </div>
     </div>
     </>

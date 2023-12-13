@@ -1,35 +1,35 @@
 
-
-export default function Paciente(){
+export default function Paciente({pacientes, key}){
     return (
         <>
-            <div className="bg-white shadow-sm rounded-xl py-10 px-5 mb-4">
+            <div key={key} className="bg-white shadow-sm rounded-xl py-10 px-5 mb-4">
                     <p className="font-bold mb-3 text-gray-700 uppercase">nombre: {' '}
                         <span className="font-normal normal-case">
-                            Ferrando
+                            {pacientes.Nombre}
                         </span>
                     </p>
                     
                     <p className="font-bold mb-3 text-gray-700 uppercase">Propietario: {' '}
                         <span className="font-normal normal-case">
-                            Juan
+                            {pacientes.Paciente}
                         </span>
                     </p>
 
                     <p className="font-bold mb-3 text-gray-700 uppercase">Email: {' '}
                         <span className="font-normal normal-case">
-                            Correo@correo.com
+                            {pacientes.Email}
                         </span>
                     </p>
 
                     <p className="font-bold mb-3 text-gray-700 uppercase">Fecha alta: {' '}
                         <span className="font-normal normal-case">
-                            10 Diciembre 2022
+                            {pacientes.Alta}
                         </span>
                     </p>
 
                     <p className="font-bold mb-3 text-gray-700 uppercase">Sintomas: {' '}
                         <span className="font-normal normal-case">
+                            {pacientes.Sintomas}
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
                             Quas quam hic labore repellendus dolore ratione veritatis 
                             corrupti id alias facere, unde, culpa distinctio debitis et earum, 
