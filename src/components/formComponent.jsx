@@ -48,7 +48,9 @@ export default function FormComponent({pacientes,SetPacientes}){
                     <div className="text-left mb-5">
                         {
                         error&&(
-                            <ErrorComponent message={"Hay campos sin completar"}/>
+                            <ErrorComponent>
+                                <p className="text-white font-bold"> Hay Campos sin completar !!!!</p>
+                            </ErrorComponent>
                         )
                         }
                         <label 
